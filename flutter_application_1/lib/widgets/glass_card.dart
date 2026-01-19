@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class LoginGlassCard extends StatelessWidget {
   final Widget child;
   const LoginGlassCard({super.key, required this.child});
-
+ 
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
@@ -19,8 +19,8 @@ class LoginGlassCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(28),
             color: Colors.black.withOpacity(0.38),
             border: Border.all(
-              color: Colors.cyanAccent.withOpacity(0.45),
-              width: 1.2,
+              color: const Color.fromARGB(255, 8, 174, 216).withOpacity(0.95),
+              width: 2.2, // ✨ slightly thicker
             ),
           ),
           child: child,
