@@ -14,10 +14,7 @@ class ProcurementLoginPage extends StatelessWidget {
         children: [
           /// 🌌 SPACE BACKGROUND
           Positioned.fill(
-            child: Image.asset(
-              'assets/images/space_bg.png',
-              fit: BoxFit.cover,
-            ),
+            child: Image.asset('assets/images/space_bg.png', fit: BoxFit.cover),
           ),
 
           /// ✨ SOFT AMBIENT GLOW
@@ -41,105 +38,177 @@ class ProcurementLoginPage extends StatelessWidget {
               padding: const EdgeInsets.all(32),
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 640),
-                child: GlassCard(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      /// 🔷 LOGO INSIDE FORM
-                      Image.asset(
-                        'assets/images/powerxchange_logo.png',
-                        height: 48,
-                      ),
-                      const SizedBox(height: 18),
-
-                      const Text(
-                        'Procurement Portal',
-                        style: TextStyle(
-                          fontSize: 26,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    /// 🔷 BRAND HEADER
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ClipRect(
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            widthFactor:
+                                0.78, // 👈 THIS trims right-side transparent padding
+                            child: Image.asset(
+                              'assets/images/powerxchange_logo.png',
+                              height: 40,
+                              filterQuality: FilterQuality.high,
+                            ),
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 8),
 
-                      const SizedBox(
-                        width: 420,
-                        child: Text(
-                          'Secure, AI-driven procurement for utilities and energy enterprises',
-                          textAlign: TextAlign.center,
+                        const SizedBox(width: 8),
+                        const Text(
+                          'PowerXchange.ai',
+                          textHeightBehavior: TextHeightBehavior(
+                            applyHeightToFirstAscent: false,
+                            applyHeightToLastDescent: false,
+                          ),
                           style: TextStyle(
-                            color: Colors.white70,
-                            height: 1.4,
-                            fontSize: 14,
+                            fontSize: 26,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                            height: 1.0,
+                            letterSpacing: 0.2,
                           ),
                         ),
+                      ],
+                    ),
+
+                    const SizedBox(height: 22),
+
+                    const Text(
+                      'Procurement Portal',
+                      style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
                       ),
+                    ),
 
-                      const SizedBox(height: 30),
+                    const SizedBox(height: 8),
 
-                      /// ================= INPUTS =================
-                      _glassDropdown(),
-                      const SizedBox(height: 16),
-
-                      _glassInput(
-                        hint: 'Officer Email Address',
-                        icon: Icons.email_outlined,
-                      ),
-                      const SizedBox(height: 16),
-
-                      _glassInput(
-                        hint: 'Password',
-                        icon: Icons.lock_outline,
-                        obscure: true,
-                        suffix: const Icon(
-                          Icons.visibility_off,
-                          color: Colors.white38,
+                    const SizedBox(
+                      width: 420,
+                      child: Text(
+                        'Secure, AI-driven procurement for utilities and energy enterprises',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white70,
+                          height: 1.4,
+                          fontSize: 14,
                         ),
                       ),
+                    ),
 
-                      const SizedBox(height: 20),
+                    const SizedBox(height: 30),
 
-                      /// 🔥 FULL-WIDTH LOGIN BUTTON
-                      _glowButton(
-                        text: 'Login to Procurement Portal',
-                        onTap: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) =>
-                                  const ProcurementDashboardPage(),
-                            ),
-                          );
-                        },
-                      ),
-
-                      const SizedBox(height: 18),
-
-                      /// ACTION LINKS
-                      Column(
+                    /// 🔷 GLASS FORM
+                    GlassCard(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          TextButton(
-                            onPressed: () {},
-                            child: const Text(
-                              'Request Procurement Access',
-                              style: TextStyle(
-                                color: Colors.white70,
-                              ),
+                          SizedBox(width: 320, child: _glassDropdown()),
+
+                          const SizedBox(height: 16),
+
+                          _glassInput(
+                            hint: 'Officer Email Address',
+                            icon: Icons.email_outlined,
+                          ),
+
+                          const SizedBox(height: 16),
+
+                          _glassInput(
+                            hint: 'Password',
+                            icon: Icons.lock_outline,
+                            obscure: true,
+                            suffix: const Icon(
+                              Icons.visibility_off,
+                              color: Colors.white38,
                             ),
                           ),
+
+                          const SizedBox(height: 20),
+
+                          _glowButton(
+                            text: 'Login to Procurement Portal',
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) =>
+                                      const ProcurementDashboardPage(),
+                                ),
+                              );
+                            },
+                          ),
+
+                          /// 🔹 OR DIVIDER
+                          const SizedBox(height: 14),
+
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Divider(
+                                  color: Colors.white24,
+                                  thickness: 0.6,
+                                ),
+                              ),
+                              const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 12),
+                                child: Text(
+                                  'OR',
+                                  style: TextStyle(
+                                    color: Colors.white54,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Divider(
+                                  color: Colors.white24,
+                                  thickness: 0.6,
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          const SizedBox(height: 14),
+
+                          _glassOutlineButton(
+                            text: 'Request Procurement Access',
+                            onTap: () {},
+                          ),
+
+                          const SizedBox(height: 6),
+
                           TextButton(
                             onPressed: () {},
                             child: const Text(
                               'Quick Onboarding',
-                              style: TextStyle(
-                                color: Colors.cyanAccent,
-                              ),
+                              style: TextStyle(color: Colors.cyanAccent),
+                            ),
+                          ),
+
+                          const SizedBox(height: 6),
+
+                          const Text(
+                            'Procurement onboarding is restricted to authorized personnel and subject to verification.',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white38,
+                              fontSize: 11.5,
+                              height: 1.4,
                             ),
                           ),
                         ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -164,28 +233,20 @@ class ProcurementLoginPage extends StatelessWidget {
           obscureText: obscure,
           style: const TextStyle(color: Colors.white),
           decoration: InputDecoration(
-            contentPadding:
-                const EdgeInsets.symmetric(vertical: 18),
+            contentPadding: const EdgeInsets.symmetric(vertical: 18),
             hintText: hint,
-            hintStyle:
-                const TextStyle(color: Colors.white54),
-            prefixIcon:
-                Icon(icon, color: Colors.white70),
+            hintStyle: const TextStyle(color: Colors.white54),
+            prefixIcon: Icon(icon, color: Colors.white70),
             suffixIcon: suffix,
             filled: true,
             fillColor: Colors.white.withOpacity(0.05),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(
-                color: Colors.white.withOpacity(0.18),
-              ),
+              borderSide: BorderSide(color: Colors.white.withOpacity(0.18)),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(
-                color:
-                    Colors.cyanAccent.withOpacity(0.9),
-              ),
+              borderSide: BorderSide(color: Colors.cyanAccent.withOpacity(0.9)),
             ),
           ),
         ),
@@ -216,22 +277,14 @@ class ProcurementLoginPage extends StatelessWidget {
           decoration: InputDecoration(
             filled: true,
             fillColor: Colors.white.withOpacity(0.05),
-            prefixIcon: const Icon(
-              Icons.person_outline,
-              color: Colors.white70,
-            ),
+            prefixIcon: const Icon(Icons.person_outline, color: Colors.white70),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(
-                color: Colors.white.withOpacity(0.18),
-              ),
+              borderSide: BorderSide(color: Colors.white.withOpacity(0.18)),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(
-                color:
-                    Colors.cyanAccent.withOpacity(0.9),
-              ),
+              borderSide: BorderSide(color: Colors.cyanAccent.withOpacity(0.9)),
             ),
           ),
         ),
@@ -245,22 +298,28 @@ class ProcurementLoginPage extends StatelessWidget {
     required VoidCallback onTap,
   }) {
     return SizedBox(
-      width: double.infinity,
+      width: 320,
       height: 50,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(26),
+
+          // 🔥 DARK, PREMIUM BUTTON (MATCHES IMAGE)
           gradient: const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
             colors: [
-              Color(0xFF66F2FF),
-              Color(0xFF2BB3FF),
+              Color(0xFF0E2A47), // dark navy
+              Color(0xFF1E5AA8), // deep electric blue
             ],
           ),
+
+          // 🔹 SUBTLE BLUE GLOW (NOT CYAN)
           boxShadow: [
             BoxShadow(
-              color: Colors.cyanAccent.withOpacity(0.6),
-              blurRadius: 24,
-              spreadRadius: 1,
+              color: Color(0xFF1E5AA8).withOpacity(0.35),
+              blurRadius: 18,
+              spreadRadius: 0.3,
             ),
           ],
         ),
@@ -277,7 +336,51 @@ class ProcurementLoginPage extends StatelessWidget {
             text,
             style: const TextStyle(
               fontWeight: FontWeight.w600,
-              color: Colors.black,
+              fontSize: 15,
+              color: Colors.white,
+              letterSpacing: 0.2,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// ================= GLASS OUTLINE BUTTON =================
+  static Widget _glassOutlineButton({
+    required String text,
+    required VoidCallback onTap,
+  }) {
+    return SizedBox(
+      width: 320,
+      height: 44,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(24),
+          color: Colors.white.withOpacity(0.03),
+          border: Border.all(
+            color: Colors.cyanAccent.withOpacity(0.7),
+            width: 1.2,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.cyanAccent.withOpacity(0.25),
+              blurRadius: 14,
+              spreadRadius: 0.5,
+            ),
+          ],
+        ),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(24),
+          onTap: onTap,
+          child: Center(
+            child: Text(
+              text,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 14.5,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
         ),

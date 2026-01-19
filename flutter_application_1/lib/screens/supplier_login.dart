@@ -48,19 +48,33 @@ class SupplierLoginPage extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Image.asset(
-                            'assets/images/powerxchange_logo.png',
-                            height: 44, // matches reference icon height
+                          ClipRect(
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              widthFactor:
+                                  0.78, // 👈 trims right-side transparent padding
+                              child: Image.asset(
+                                'assets/images/powerxchange_logo.png',
+                                height: 44,
+                                filterQuality: FilterQuality.high,
+                              ),
+                            ),
                           ),
-                          const SizedBox(width: 6), // tight gap like screenshot
+                          const SizedBox(
+                            width: 4,
+                          ), // tighter gap like reference
                           const Text(
                             'PowerXchange.ai',
+                            textHeightBehavior: TextHeightBehavior(
+                              applyHeightToFirstAscent: false,
+                              applyHeightToLastDescent: false,
+                            ),
                             style: TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.w600,
                               color: Colors.white,
-                              height: 1.0, // removes font vertical padding
-                              letterSpacing: 0.2, // same tracking as reference
+                              height: 1.0,
+                              letterSpacing: 0.2,
                             ),
                           ),
                         ],
@@ -239,19 +253,28 @@ class SupplierLoginPage extends StatelessWidget {
     required VoidCallback onTap,
   }) {
     return SizedBox(
-      width: double.infinity,
+      width: 320,
       height: 50,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(26),
+
+          // 🔥 DARK IMAGE-MATCHED GRADIENT
           gradient: const LinearGradient(
-            colors: [Color(0xFF66F2FF), Color(0xFF2BB3FF)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xFF0E2A47), // very dark navy (top)
+              Color(0xFF1E5AA8), // deep electric blue (bottom)
+            ],
           ),
+
+          // 🔹 SOFT, TIGHT BLUE GLOW (NOT CYAN)
           boxShadow: [
             BoxShadow(
-              color: Colors.cyanAccent.withOpacity(0.6),
-              blurRadius: 24,
-              spreadRadius: 1,
+              color: Color(0xFF1E5AA8).withOpacity(0.35),
+              blurRadius: 18,
+              spreadRadius: 0.3,
             ),
           ],
         ),
@@ -268,7 +291,9 @@ class SupplierLoginPage extends StatelessWidget {
             text,
             style: const TextStyle(
               fontWeight: FontWeight.w600,
-              color: Colors.black,
+              fontSize: 15,
+              color: Colors.white,
+              letterSpacing: 0.2,
             ),
           ),
         ),
@@ -293,7 +318,7 @@ class SupplierLoginPage extends StatelessWidget {
 
   static ButtonStyle _outlineStyle() {
     return OutlinedButton.styleFrom(
-      foregroundColor: Colors.cyanAccent,
+      foregroundColor: const Color.fromARGB(255, 255, 255, 255),
       side: BorderSide(color: Colors.cyanAccent.withOpacity(0.6)),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(22)),
     );
