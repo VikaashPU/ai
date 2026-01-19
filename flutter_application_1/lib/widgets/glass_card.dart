@@ -19,8 +19,8 @@ class LoginGlassCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(28),
             color: Colors.black.withOpacity(0.38),
             border: Border.all(
-              color: Colors.cyanAccent.withOpacity(0.45),
-              width: 1.2,
+              color: const Color.fromARGB(255, 8, 174, 216).withOpacity(0.95),
+              width: 2.2, // ✨ slightly thicker
             ),
           ),
           child: child,
@@ -39,6 +39,14 @@ class DashboardGlassCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(22),
+      child: Container(
+        padding: const EdgeInsets.all(22),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(22),
+          color: Colors.black.withOpacity(0.22),
+          border: Border.all(color: Colors.white.withOpacity(0.08), width: 0.9),
     return CustomPaint(
       painter: _DashboardBorderPainter(),
       child: ClipRRect(
