@@ -50,7 +50,7 @@ class ProcurementLoginPage extends StatelessWidget {
                           child: Align(
                             alignment: Alignment.centerLeft,
                             widthFactor:
-                                0.78, // 👈 THIS trims right-side transparent padding
+                                0.99, // 👈 THIS trims right-side transparent padding
                             child: Image.asset(
                               'assets/images/powerxchange_logo.png',
                               height: 40,
@@ -59,7 +59,7 @@ class ProcurementLoginPage extends StatelessWidget {
                           ),
                         ),
 
-                        const SizedBox(width: 8),
+                        const SizedBox(width: 10),
                         const Text(
                           'PowerXchange.ai',
                           textHeightBehavior: TextHeightBehavior(
@@ -359,7 +359,7 @@ class ProcurementLoginPage extends StatelessWidget {
           borderRadius: BorderRadius.circular(24),
           color: Colors.white.withOpacity(0.03),
           border: Border.all(
-            color: Colors.cyanAccent.withOpacity(0.7),
+            color: const Color.fromARGB(255, 93, 109, 139).withOpacity(0.7),
             width: 1.2,
           ),
           boxShadow: [

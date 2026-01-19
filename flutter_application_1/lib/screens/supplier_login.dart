@@ -52,7 +52,7 @@ class SupplierLoginPage extends StatelessWidget {
                             child: Align(
                               alignment: Alignment.centerLeft,
                               widthFactor:
-                                  0.78, // 👈 trims right-side transparent padding
+                                  0.99, // 👈 trims right-side transparent padding
                               child: Image.asset(
                                 'assets/images/powerxchange_logo.png',
                                 height: 44,
@@ -61,7 +61,7 @@ class SupplierLoginPage extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(
-                            width: 4,
+                            width: 10,
                           ), // tighter gap like reference
                           const Text(
                             'PowerXchange.ai',
@@ -318,7 +318,7 @@ class SupplierLoginPage extends StatelessWidget {
 
   static ButtonStyle _outlineStyle() {
     return OutlinedButton.styleFrom(
-      foregroundColor: const Color.fromARGB(255, 255, 255, 255),
+      foregroundColor: const Color.fromARGB(255, 232, 247, 252),
       side: BorderSide(color: Colors.cyanAccent.withOpacity(0.6)),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(22)),
     );
