@@ -6,32 +6,57 @@ class GlassCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(28),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 34),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(28),
-
-          // ✅ LOGIN FORM COLOR (change this)
-          color: Colors.black.withOpacity(0.35),
-
-          // try: Colors.blueGrey.withOpacity(0.28)
-          border: Border.all(
-            color: Colors.cyanAccent.withOpacity(0.35),
-            width: 1.1,
+    return CustomPaint(
+      painter: _ShinyBorderPainter(), // ✅ now Dart knows it
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(28),
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 32,
+            vertical: 34,
           ),
-
-          boxShadow: [
-            BoxShadow(
-              color: Colors.cyanAccent.withOpacity(0.18),
-              blurRadius: 50,
-              spreadRadius: 1,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(28),
+            color: Colors.black.withOpacity(0.35),
+            border: Border.all(
+              color: Colors.cyanAccent.withOpacity(0.35),
+              width: 1.1,
             ),
-          ],
+          ),
+          child: child,
         ),
-        child: child,
       ),
     );
   }
+}
+
+/// 👇 ADD THIS BELOW GlassCard
+class _ShinyBorderPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final rect = Offset.zero & size;
+
+    final rrect = RRect.fromRectAndRadius(
+      rect.deflate(0.6),
+      const Radius.circular(28),
+    );
+
+    final paint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.2
+      ..shader = LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [
+          Colors.white.withOpacity(0.65),
+          Colors.cyanAccent.withOpacity(0.25),
+          Colors.transparent,
+        ],
+      ).createShader(rect);
+
+    canvas.drawRRect(rrect, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

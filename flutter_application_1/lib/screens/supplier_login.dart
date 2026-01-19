@@ -14,10 +14,7 @@ class SupplierLoginPage extends StatelessWidget {
         children: [
           /// 🌌 SPACE BACKGROUND
           Positioned.fill(
-            child: Image.asset(
-              'assets/images/space_bg.png',
-              fit: BoxFit.cover,
-            ),
+            child: Image.asset('assets/images/space_bg.png', fit: BoxFit.cover),
           ),
 
           /// ✨ SOFT AMBIENT GLOW
@@ -45,11 +42,30 @@ class SupplierLoginPage extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      /// 🔷 LOGO INSIDE FORM
-                      Image.asset(
-                        'assets/images/powerxchange_logo.png',
-                        height: 48,
+                      /// 🔷 LOGO + BRAND NAME
+                      /// 🔷 LOGO + TEXT (PIXEL-CLOSE MATCH)
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/images/powerxchange_logo.png',
+                            height: 44, // matches reference icon height
+                          ),
+                          const SizedBox(width: 6), // tight gap like screenshot
+                          const Text(
+                            'PowerXchange.ai',
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                              height: 1.0, // removes font vertical padding
+                              letterSpacing: 0.2, // same tracking as reference
+                            ),
+                          ),
+                        ],
                       ),
+
                       const SizedBox(height: 18),
 
                       const Text(
@@ -120,8 +136,7 @@ class SupplierLoginPage extends StatelessWidget {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (_) =>
-                                  const SupplierDashboardPage(),
+                              builder: (_) => const SupplierDashboardPage(),
                             ),
                           );
                         },
@@ -134,12 +149,10 @@ class SupplierLoginPage extends StatelessWidget {
                         children: [
                           Expanded(child: _divider()),
                           const Padding(
-                            padding:
-                                EdgeInsets.symmetric(horizontal: 12),
+                            padding: EdgeInsets.symmetric(horizontal: 12),
                             child: Text(
                               'OR',
-                              style:
-                                  TextStyle(color: Colors.white54),
+                              style: TextStyle(color: Colors.white54),
                             ),
                           ),
                           Expanded(child: _divider()),
@@ -150,8 +163,7 @@ class SupplierLoginPage extends StatelessWidget {
 
                       /// ACTION BUTTONS
                       Row(
-                        mainAxisAlignment:
-                            MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           OutlinedButton(
                             style: _outlineStyle(),
@@ -162,8 +174,7 @@ class SupplierLoginPage extends StatelessWidget {
                           OutlinedButton(
                             style: _outlineStyle(),
                             onPressed: () {},
-                            child:
-                                const Text('Quick Onboarding'),
+                            child: const Text('Quick Onboarding'),
                           ),
                         ],
                       ),
@@ -172,10 +183,7 @@ class SupplierLoginPage extends StatelessWidget {
 
                       const Text(
                         'Supplier onboarding is subject to approval and compliance verification',
-                        style: TextStyle(
-                          color: Colors.white38,
-                          fontSize: 12,
-                        ),
+                        style: TextStyle(color: Colors.white38, fontSize: 12),
                         textAlign: TextAlign.center,
                       ),
                     ],
@@ -204,28 +212,20 @@ class SupplierLoginPage extends StatelessWidget {
           obscureText: obscure,
           style: const TextStyle(color: Colors.white),
           decoration: InputDecoration(
-            contentPadding:
-                const EdgeInsets.symmetric(vertical: 18),
+            contentPadding: const EdgeInsets.symmetric(vertical: 18),
             hintText: hint,
-            hintStyle:
-                const TextStyle(color: Colors.white54),
-            prefixIcon:
-                Icon(icon, color: Colors.white70),
+            hintStyle: const TextStyle(color: Colors.white54),
+            prefixIcon: Icon(icon, color: Colors.white70),
             suffixIcon: suffix,
             filled: true,
             fillColor: Colors.white.withOpacity(0.05),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(
-                color: Colors.white.withOpacity(0.18),
-              ),
+              borderSide: BorderSide(color: Colors.white.withOpacity(0.18)),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(
-                color:
-                    Colors.cyanAccent.withOpacity(0.9),
-              ),
+              borderSide: BorderSide(color: Colors.cyanAccent.withOpacity(0.9)),
             ),
           ),
         ),
@@ -245,10 +245,7 @@ class SupplierLoginPage extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(26),
           gradient: const LinearGradient(
-            colors: [
-              Color(0xFF66F2FF),
-              Color(0xFF2BB3FF),
-            ],
+            colors: [Color(0xFF66F2FF), Color(0xFF2BB3FF)],
           ),
           boxShadow: [
             BoxShadow(
@@ -297,11 +294,8 @@ class SupplierLoginPage extends StatelessWidget {
   static ButtonStyle _outlineStyle() {
     return OutlinedButton.styleFrom(
       foregroundColor: Colors.cyanAccent,
-      side:
-          BorderSide(color: Colors.cyanAccent.withOpacity(0.6)),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(22),
-      ),
+      side: BorderSide(color: Colors.cyanAccent.withOpacity(0.6)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(22)),
     );
   }
 }
