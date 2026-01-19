@@ -5,10 +5,15 @@ import 'procurement_login.dart';
 class ProcurementDashboardPage extends StatelessWidget {
   const ProcurementDashboardPage({super.key});
 
+  /// 🎨 THEME COLORS (same as Supplier Dashboard)
+  static const Color _activeBg = Color(0xFF0F1E2E);
+  static const Color _activeBorder = Color(0xFF1E3A5F);
+  static const Color _activeIcon = Color(0xFF7FB3FF);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.black,
       body: Stack(
         children: [
           /// 🌌 SPACE BACKGROUND
@@ -25,6 +30,12 @@ class ProcurementDashboardPage extends StatelessWidget {
               Container(
                 height: 64,
                 padding: const EdgeInsets.symmetric(horizontal: 24),
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom:
+                        BorderSide(color: Colors.white.withOpacity(0.12)),
+                  ),
+                ),
                 child: Row(
                   children: [
                     Image.asset(
@@ -54,62 +65,64 @@ class ProcurementDashboardPage extends StatelessWidget {
                 ),
               ),
 
-              const Divider(height: 1, color: Colors.white12),
-
               /// ================= BODY =================
               Expanded(
                 child: Row(
                   children: [
-                    /// ========== SIDEBAR ==========
+                    /// ================= SIDEBAR =================
                     SizedBox(
                       width: 260,
                       child: Padding(
                         padding: const EdgeInsets.all(12),
                         child: GlassCard(
-                          child: ListView(
-                            children: [
-                              _sideItem(Icons.dashboard, 'Dashboard',
-                                  active: true),
-                              _sideItem(Icons.assignment, 'RFQs'),
-                              _sideItem(Icons.shopping_bag, 'Suppliers'),
-                              _sideItem(Icons.receipt_long,
-                                  'Purchase Orders'),
-                              _sideItem(Icons.verified, 'Approvals'),
-                              _sideItem(Icons.analytics, 'Spend Analytics'),
-                              _sideItem(Icons.inventory, 'Inventory'),
-                              _sideItem(Icons.help_outline, 'Help'),
-                              const Divider(color: Colors.white24),
-                              ListTile(
-                                leading: const Icon(Icons.logout,
-                                    color: Colors.white70),
-                                title: const Text(
-                                  'Logout',
-                                  style:
-                                      TextStyle(color: Colors.white70),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                _sideItem(Icons.dashboard, 'Dashboard',
+                                    active: true),
+                                _sideItem(Icons.assignment, 'RFQs'),
+                                _sideItem(Icons.shopping_bag, 'Suppliers'),
+                                _sideItem(Icons.receipt_long,
+                                    'Purchase Orders'),
+                                _sideItem(Icons.verified, 'Approvals'),
+                                _sideItem(Icons.analytics, 'Spend Analytics'),
+                                _sideItem(Icons.inventory, 'Inventory'),
+                                _sideItem(Icons.help_outline, 'Help'),
+                                const SizedBox(height: 16),
+                                const Divider(color: Colors.white24),
+                                ListTile(
+                                  leading: const Icon(Icons.logout,
+                                      color: Colors.white70),
+                                  title: const Text(
+                                    'Logout',
+                                    style:
+                                        TextStyle(color: Colors.white70),
+                                  ),
+                                  onTap: () {
+                                    Navigator.pushAndRemoveUntil(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) =>
+                                            const ProcurementLoginPage(),
+                                      ),
+                                      (_) => false,
+                                    );
+                                  },
                                 ),
-                                onTap: () {
-                                  Navigator.pushAndRemoveUntil(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (_) =>
-                                          const ProcurementLoginPage(),
-                                    ),
-                                    (_) => false,
-                                  );
-                                },
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
 
-                    /// ========== MAIN CONTENT ==========
+                    /// ================= MAIN CONTENT =================
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.all(20),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment:
+                              CrossAxisAlignment.start,
                           children: [
                             const Text(
                               'Procurement Overview',
@@ -119,59 +132,46 @@ class ProcurementDashboardPage extends StatelessWidget {
                                 color: Colors.white,
                               ),
                             ),
-                            const SizedBox(height: 4),
+                            const SizedBox(height: 6),
                             const Text(
                               'Enterprise procurement summary',
                               style:
                                   TextStyle(color: Colors.white70),
                             ),
 
-                            const SizedBox(height: 20),
+                            const SizedBox(height: 24),
 
-                            /// ===== METRICS =====
+                            /// ================= METRICS =================
                             Row(
                               children: [
                                 Expanded(
                                   child: _metricCard(
-                                    'Active RFQs',
-                                    '18',
-                                    '',
-                                  ),
+                                      'Active RFQs', '18', ''),
                                 ),
                                 const SizedBox(width: 16),
                                 Expanded(
                                   child: _metricCard(
-                                    'Open POs',
-                                    '42',
-                                    '₹112 Cr',
-                                  ),
+                                      'Open POs', '42', '₹112 Cr'),
                                 ),
                                 const SizedBox(width: 16),
                                 Expanded(
                                   child: _metricCard(
-                                    'Pending Approvals',
-                                    '7',
-                                    '',
-                                  ),
+                                      'Pending Approvals', '7', ''),
                                 ),
                                 const SizedBox(width: 16),
                                 Expanded(
                                   child: _metricCard(
-                                    'Monthly Spend',
-                                    '₹24.8 Cr',
-                                    '',
-                                  ),
+                                      'Monthly Spend', '₹24.8 Cr', ''),
                                 ),
                               ],
                             ),
 
                             const SizedBox(height: 20),
 
-                            /// ===== MAIN PANEL =====
+                            /// ================= MAIN PANELS =================
                             Expanded(
                               child: Row(
                                 children: [
-                                  /// LEFT
                                   Expanded(
                                     flex: 3,
                                     child: GlassCard(
@@ -185,10 +185,7 @@ class ProcurementDashboardPage extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-
                                   const SizedBox(width: 16),
-
-                                  /// RIGHT
                                   Expanded(
                                     flex: 2,
                                     child: Column(
@@ -238,21 +235,53 @@ class ProcurementDashboardPage extends StatelessWidget {
     );
   }
 
-  /// ================= HELPERS =================
-
-  static Widget _sideItem(IconData icon, String label,
-      {bool active = false}) {
-    return ListTile(
-      leading: Icon(icon,
-          color: active ? Colors.cyanAccent : Colors.white70),
-      title: Text(
-        label,
-        style: TextStyle(
-            color: active ? Colors.cyanAccent : Colors.white70),
+  /// ================= SIDEBAR ITEM =================
+  static Widget _sideItem(
+    IconData icon,
+    String label, {
+    bool active = false,
+  }) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 6),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(14),
+        color: active ? _activeBg : Colors.transparent,
+        border: active
+            ? Border.all(
+                color: _activeBorder,
+                width: 1.2,
+              )
+            : null,
+        boxShadow: active
+            ? [
+                BoxShadow(
+                  color: _activeBorder.withOpacity(0.6),
+                  blurRadius: 12,
+                  spreadRadius: 1,
+                ),
+              ]
+            : [],
+      ),
+      child: ListTile(
+        leading: Icon(
+          icon,
+          color: active ? _activeIcon : Colors.white70,
+        ),
+        title: Text(
+          label,
+          style: TextStyle(
+            color: active ? _activeIcon : Colors.white70,
+            fontWeight:
+                active ? FontWeight.w600 : FontWeight.normal,
+          ),
+        ),
+        dense: true,
+        horizontalTitleGap: 10,
       ),
     );
   }
 
+  /// ================= METRIC CARD =================
   static Widget _metricCard(
     String title,
     String value,

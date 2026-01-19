@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/glass_card.dart';
 import '../widgets/payment_donut_chart.dart';
+import '../widgets/performance_trend_chart.dart';
 import 'supplier_login.dart';
 
 class SupplierDashboardPage extends StatelessWidget {
@@ -9,10 +10,10 @@ class SupplierDashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.black,
       body: Stack(
         children: [
-          /// 🌌 SPACE BACKGROUND
+          /// 🌌 BACKGROUND
           Positioned.fill(
             child: Image.asset(
               'assets/images/space_bg.png',
@@ -65,7 +66,7 @@ class SupplierDashboardPage extends StatelessWidget {
               Expanded(
                 child: Row(
                   children: [
-                    /// ========== SIDEBAR (SCROLLABLE) ==========
+                    /// ================= SIDEBAR =================
                     SizedBox(
                       width: 280,
                       child: Padding(
@@ -96,8 +97,8 @@ class SupplierDashboardPage extends StatelessWidget {
                                       color: Colors.white70),
                                   title: const Text(
                                     'Logout',
-                                    style: TextStyle(
-                                        color: Colors.white70),
+                                    style:
+                                        TextStyle(color: Colors.white70),
                                   ),
                                   onTap: () {
                                     Navigator.pushReplacement(
@@ -116,7 +117,7 @@ class SupplierDashboardPage extends StatelessWidget {
                       ),
                     ),
 
-                    /// ========== MAIN CONTENT ==========
+                    /// ================= MAIN CONTENT =================
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.all(20),
@@ -133,7 +134,7 @@ class SupplierDashboardPage extends StatelessWidget {
                                   color: Colors.white,
                                 ),
                               ),
-                              const SizedBox(height: 4),
+                              const SizedBox(height: 6),
                               const Text(
                                 "Here's your supplier overview",
                                 style:
@@ -142,172 +143,140 @@ class SupplierDashboardPage extends StatelessWidget {
 
                               const SizedBox(height: 24),
 
-                              /// ===== METRIC CARDS =====
-                              Row(
-                                children: [
-                                  Expanded(
-                                      child: _metric(
-                                          'Active Purchase Orders',
-                                          '13',
-                                          '₹22.5 Cr')),
-                                  const SizedBox(width: 16),
-                                  Expanded(
-                                      child: _metric(
-                                          'Pending Deliveries',
-                                          '5',
-                                          'Late')),
-                                  const SizedBox(width: 16),
-                                  Expanded(
-                                      child: _metric(
-                                          'Pending Payments',
-                                          '₹80 L',
-                                          'Pending')),
-                                  const SizedBox(width: 16),
-                                  Expanded(
-                                      child: _metric(
-                                          'QC Inspections',
-                                          '1',
-                                          'Inspected')),
-                                ],
-                              ),
-
-                              const SizedBox(height: 24),
-
-                              /// ===== LOWER GRID =====
-                              Row(
-                                crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                children: [
-                                  /// LEFT COLUMN
-                                  Expanded(
-                                    flex: 3,
-                                    child: Column(
-                                      children: [
-                                        GlassCard(
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsets.symmetric(
-                                                    vertical: 50),
-                                            child: const Center(
-                                              child: Text(
-                                                'Supplier Scorecard Table',
-                                                style: TextStyle(
-                                                    color:
-                                                        Colors.white70,
-                                                    fontSize: 16),
-                                              ),
-                                            ),
+                              /// ================= SUPPLIER SCORECARD =================
+                              GlassCard(
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: const [
+                                        Text(
+                                          'Supplier Scorecard',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontWeight:
+                                                FontWeight.w600,
                                           ),
                                         ),
-                                        const SizedBox(height: 16),
-                                        GlassCard(
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsets.symmetric(
-                                                    vertical: 40),
-                                            child: const Center(
-                                              child: Text(
-                                                'Recent Purchase Orders',
-                                                style: TextStyle(
-                                                    color:
-                                                        Colors.white70,
-                                                    fontSize: 16),
-                                              ),
-                                            ),
+                                        Spacer(),
+                                        Text(
+                                          'Performance Trend',
+                                          style: TextStyle(
+                                            color: Colors.white54,
+                                            fontSize: 13,
                                           ),
                                         ),
                                       ],
                                     ),
-                                  ),
+                                    const SizedBox(height: 16),
 
-                                  const SizedBox(width: 16),
-
-                                  /// RIGHT COLUMN
-                                  Expanded(
-                                    flex: 2,
-                                    child: Column(
+                                    /// CONTENT (AUTO HEIGHT — NO OVERFLOW)
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        GlassCard(
+                                        /// METRICS
+                                        Expanded(
+                                          flex: 7,
                                           child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment
-                                                    .start,
                                             children: [
-                                              const Text(
-                                                'Payment Status',
-                                                style: TextStyle(
-                                                    color:
-                                                        Colors.white70,
-                                                    fontSize: 15),
-                                              ),
-                                              const SizedBox(height: 20),
                                               Row(
                                                 children: [
-                                                  const PaymentDonutChart(
-                                                    paid: 170,
-                                                    pending: 80,
+                                                  Expanded(
+                                                    child: _metric(
+                                                      'Active Purchase Orders',
+                                                      '13',
+                                                      '₹22.5 Cr',
+                                                    ),
                                                   ),
-                                                  const SizedBox(width: 20),
-                                                  Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: const [
-                                                      Text(
-                                                        '₹80 L',
-                                                        style: TextStyle(
-                                                          color: Colors
-                                                              .cyanAccent,
-                                                          fontWeight:
-                                                              FontWeight
-                                                                  .bold,
-                                                          fontSize: 18,
-                                                        ),
-                                                      ),
-                                                      Text('Pending',
-                                                          style: TextStyle(
-                                                              color: Colors
-                                                                  .white54)),
-                                                      SizedBox(height: 14),
-                                                      Text(
-                                                        '₹1.7 Cr',
-                                                        style: TextStyle(
-                                                          color:
-                                                              Colors.white,
-                                                          fontWeight:
-                                                              FontWeight
-                                                                  .bold,
-                                                          fontSize: 18,
-                                                        ),
-                                                      ),
-                                                      Text('Paid',
-                                                          style: TextStyle(
-                                                              color: Colors
-                                                                  .white54)),
-                                                    ],
+                                                  const SizedBox(width: 14),
+                                                  Expanded(
+                                                    child: _metric(
+                                                      'Pending Deliveries',
+                                                      '5',
+                                                      'Late',
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              const SizedBox(height: 14),
+                                              Row(
+                                                children: [
+                                                  Expanded(
+                                                    child: _metric(
+                                                      'Pending Payments',
+                                                      '₹80 L',
+                                                      'Pending',
+                                                    ),
+                                                  ),
+                                                  const SizedBox(width: 14),
+                                                  Expanded(
+                                                    child: _metric(
+                                                      'QC Inspections',
+                                                      '1',
+                                                      'Inspected',
+                                                    ),
                                                   ),
                                                 ],
                                               ),
                                             ],
                                           ),
                                         ),
-                                        const SizedBox(height: 16),
-                                        GlassCard(
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsets.symmetric(
-                                                    vertical: 45),
-                                            child: const Center(
-                                              child: Text(
-                                                'Inventory Availability',
-                                                style: TextStyle(
-                                                    color:
-                                                        Colors.white70,
-                                                    fontSize: 16),
-                                              ),
-                                            ),
-                                          ),
+
+                                        const SizedBox(width: 16),
+
+                                        /// GRAPH
+                                        const Expanded(
+                                          flex: 3,
+                                          child: PerformanceTrendChart(),
                                         ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+                              const SizedBox(height: 24),
+
+                              /// ================= LOWER GRID =================
+                              Row(
+                                crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    flex: 7,
+                                    child: Column(
+                                      children: [
+                                        _sectionCard(
+                                            'Supplier Scorecard Table',
+                                            220),
+                                        const SizedBox(height: 16),
+                                        _sectionCard(
+                                            'Recent Purchase Orders',
+                                            200),
+                                        const SizedBox(height: 16),
+                                        _sectionCard(
+                                            'Pending Deliveries',
+                                            160),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(width: 16),
+                                  Expanded(
+                                    flex: 3,
+                                    child: Column(
+                                      children: [
+                                        _paymentStatusCard(),
+                                        const SizedBox(height: 16),
+                                        _sectionCard(
+                                            'Inventory Availability',
+                                            180),
+                                        const SizedBox(height: 16),
+                                        _sectionCard(
+                                            'Alerts & Recommendations',
+                                            140),
                                       ],
                                     ),
                                   ),
@@ -337,9 +306,9 @@ class SupplierDashboardPage extends StatelessWidget {
       decoration: active
           ? BoxDecoration(
               borderRadius: BorderRadius.circular(14),
-              color: Colors.cyanAccent.withOpacity(0.12),
+              color: const Color.fromARGB(255, 92, 101, 141).withOpacity(0.12),
               border: Border.all(
-                  color: Colors.cyanAccent.withOpacity(0.5)),
+                  color: const Color.fromARGB(255, 70, 82, 109).withOpacity(0.5)),
             )
           : null,
       child: ListTile(
@@ -356,14 +325,25 @@ class SupplierDashboardPage extends StatelessWidget {
     );
   }
 
+  /// ✅ METRIC TILE (NO GlassCard → NO OVERFLOW)
   static Widget _metric(String title, String value, String sub) {
-    return GlassCard(
+    return Container(
+      padding:
+          const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: Colors.cyanAccent.withOpacity(0.35),
+        ),
+        color: Colors.black.withOpacity(0.25),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(title,
-              style: const TextStyle(color: Colors.white70)),
-          const SizedBox(height: 12),
+              style:
+                  const TextStyle(color: Colors.white70)),
+          const SizedBox(height: 10),
           Text(
             value,
             style: const TextStyle(
@@ -372,15 +352,90 @@ class SupplierDashboardPage extends StatelessWidget {
               color: Colors.white,
             ),
           ),
-          if (sub.isNotEmpty)
-            Padding(
-              padding: const EdgeInsets.only(top: 4),
-              child: Text(
-                sub,
-                style:
-                    const TextStyle(color: Colors.white38),
+          const SizedBox(height: 4),
+          Text(sub,
+              style:
+                  const TextStyle(color: Colors.white38)),
+        ],
+      ),
+    );
+  }
+
+  static Widget _sectionCard(String title, double height) {
+    return GlassCard(
+      child: SizedBox(
+        height: height,
+        child: Center(
+          child: Text(title,
+              style:
+                  const TextStyle(color: Colors.white70)),
+        ),
+      ),
+    );
+  }
+
+  static Widget _paymentStatusCard() {
+    return GlassCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text('Payment Status',
+              style: TextStyle(color: Colors.white70)),
+          const SizedBox(height: 20),
+          Row(
+            children: [
+              const SizedBox(
+                width: 140,
+                height: 140,
+                child:
+                    PaymentDonutChart(paid: 170, pending: 80),
               ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment:
+                      CrossAxisAlignment.start,
+                  children: const [
+                    Text('₹80 L',
+                        style: TextStyle(
+                            color: Colors.cyanAccent,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold)),
+                    Text('Pending',
+                        style:
+                            TextStyle(color: Colors.white54)),
+                    SizedBox(height: 14),
+                    Text('₹1.7 Cr',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold)),
+                    Text('Paid',
+                        style:
+                            TextStyle(color: Colors.white54)),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 14),
+          SizedBox(
+            width: double.infinity,
+            height: 44,
+            child: ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor:
+                    const Color.fromARGB(255, 76, 81, 112),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(22),
+                ),
+              ),
+              child: const Text('Submit Invoice',
+                  style:
+                      TextStyle(fontWeight: FontWeight.w600)),
             ),
+          ),
         ],
       ),
     );
