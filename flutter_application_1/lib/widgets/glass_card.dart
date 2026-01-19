@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class LoginGlassCard extends StatelessWidget {
   final Widget child;
   const LoginGlassCard({super.key, required this.child});
-
+ 
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
