@@ -74,7 +74,7 @@ class ProcurementDashboardPage extends StatelessWidget {
                       width: 260,
                       child: Padding(
                         padding: const EdgeInsets.all(12),
-                        child: GlassCard(
+                        child: DashboardGlassCard(
                           child: SingleChildScrollView(
                             child: Column(
                               children: [
@@ -174,7 +174,7 @@ class ProcurementDashboardPage extends StatelessWidget {
                                 children: [
                                   Expanded(
                                     flex: 3,
-                                    child: GlassCard(
+                                    child: DashboardGlassCard(
                                       child: Center(
                                         child: Text(
                                           'RFQs • Supplier Performance • Spend Trends',
@@ -191,7 +191,7 @@ class ProcurementDashboardPage extends StatelessWidget {
                                     child: Column(
                                       children: [
                                         Expanded(
-                                          child: GlassCard(
+                                          child: DashboardGlassCard(
                                             child: Center(
                                               child: Text(
                                                 'Approval Queue',
@@ -204,7 +204,7 @@ class ProcurementDashboardPage extends StatelessWidget {
                                         ),
                                         const SizedBox(height: 16),
                                         Expanded(
-                                          child: GlassCard(
+                                          child: DashboardGlassCard(
                                             child: Center(
                                               child: Text(
                                                 'Top Suppliers',
@@ -287,7 +287,7 @@ class ProcurementDashboardPage extends StatelessWidget {
     String value,
     String subtitle,
   ) {
-    return GlassCard(
+    return DashboardGlassCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

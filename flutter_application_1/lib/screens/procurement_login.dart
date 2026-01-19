@@ -106,7 +106,7 @@ class ProcurementLoginPage extends StatelessWidget {
                     const SizedBox(height: 30),
 
                     /// 🔷 GLASS FORM
-                    GlassCard(
+                    LoginGlassCard(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
