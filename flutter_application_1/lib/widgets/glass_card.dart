@@ -9,20 +9,19 @@ class GlassCard extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(28),
       child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 32,
-          vertical: 34,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 34),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(28),
 
-          // 🔹 Softer, lighter border
+          // ✅ LOGIN FORM COLOR (change this)
+          color: Colors.black.withOpacity(0.35),
+
+          // try: Colors.blueGrey.withOpacity(0.28)
           border: Border.all(
             color: Colors.cyanAccent.withOpacity(0.35),
             width: 1.1,
           ),
 
-          // 🔹 Much softer glow
           boxShadow: [
             BoxShadow(
               color: Colors.cyanAccent.withOpacity(0.18),
