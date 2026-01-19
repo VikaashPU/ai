@@ -71,7 +71,7 @@ class SupplierDashboardPage extends StatelessWidget {
                       width: 280,
                       child: Padding(
                         padding: const EdgeInsets.all(12),
-                        child: GlassCard(
+                        child: DashboardGlassCard(
                           child: SingleChildScrollView(
                             child: Column(
                               children: [
@@ -144,7 +144,7 @@ class SupplierDashboardPage extends StatelessWidget {
                               const SizedBox(height: 24),
 
                               /// ================= SUPPLIER SCORECARD =================
-                              GlassCard(
+                              DashboardGlassCard(
                                 child: Column(
                                   crossAxisAlignment:
                                       CrossAxisAlignment.start,
@@ -362,7 +362,7 @@ class SupplierDashboardPage extends StatelessWidget {
   }
 
   static Widget _sectionCard(String title, double height) {
-    return GlassCard(
+    return DashboardGlassCard(
       child: SizedBox(
         height: height,
         child: Center(
@@ -375,7 +375,7 @@ class SupplierDashboardPage extends StatelessWidget {
   }
 
   static Widget _paymentStatusCard() {
-    return GlassCard(
+    return DashboardGlassCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

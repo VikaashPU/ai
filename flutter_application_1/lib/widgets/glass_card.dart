@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 
-class GlassCard extends StatelessWidget {
+/// ===============================
+/// 🔐 LOGIN GLASS (SHINY / PREMIUM)
+/// ===============================
+class LoginGlassCard extends StatelessWidget {
   final Widget child;
-  const GlassCard({super.key, required this.child});
+  const LoginGlassCard({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      painter: _ShinyBorderPainter(), // ✅ now Dart knows it
+      painter: _LoginShinyBorderPainter(),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(28),
         child: Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 32,
-            vertical: 34,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 34),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(28),
-            color: Colors.black.withOpacity(0.35),
+            color: Colors.black.withOpacity(0.38),
             border: Border.all(
-              color: Colors.cyanAccent.withOpacity(0.35),
-              width: 1.1,
+              color: Colors.cyanAccent.withOpacity(0.45),
+              width: 1.2,
             ),
           ),
           child: child,
@@ -30,8 +30,37 @@ class GlassCard extends StatelessWidget {
   }
 }
 
-/// 👇 ADD THIS BELOW GlassCard
-class _ShinyBorderPainter extends CustomPainter {
+/// ===============================
+/// 📊 DASHBOARD GLASS (CALM / SOFT)
+/// ===============================
+class DashboardGlassCard extends StatelessWidget {
+  final Widget child;
+  const DashboardGlassCard({super.key, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(22),
+      child: Container(
+        padding: const EdgeInsets.all(22),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(22),
+          color: Colors.black.withOpacity(0.22),
+          border: Border.all(
+            color: Colors.white.withOpacity(0.08),
+            width: 0.9,
+          ),
+        ),
+        child: child,
+      ),
+    );
+  }
+}
+
+/// ===============================
+/// ✨ LOGIN SHINY BORDER PAINTER
+/// ===============================
+class _LoginShinyBorderPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final rect = Offset.zero & size;
@@ -43,13 +72,13 @@ class _ShinyBorderPainter extends CustomPainter {
 
     final paint = Paint()
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.2
+      ..strokeWidth = 1.4
       ..shader = LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
         colors: [
-          Colors.white.withOpacity(0.65),
-          Colors.cyanAccent.withOpacity(0.25),
+          Colors.white.withOpacity(0.75),
+          Colors.cyanAccent.withOpacity(0.45),
           Colors.transparent,
         ],
       ).createShader(rect);

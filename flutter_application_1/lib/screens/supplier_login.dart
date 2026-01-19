@@ -38,7 +38,7 @@ class SupplierLoginPage extends StatelessWidget {
               padding: const EdgeInsets.all(32),
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 640),
-                child: GlassCard(
+                child: LoginGlassCard(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
