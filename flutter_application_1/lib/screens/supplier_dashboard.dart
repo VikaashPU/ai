@@ -15,10 +15,7 @@ class SupplierDashboardPage extends StatelessWidget {
         children: [
           /// 🌌 BACKGROUND
           Positioned.fill(
-            child: Image.asset(
-              'assets/images/space_bg.png',
-              fit: BoxFit.cover,
-            ),
+            child: Image.asset('assets/images/space_bg.png', fit: BoxFit.cover),
           ),
 
           Column(
@@ -29,8 +26,7 @@ class SupplierDashboardPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 decoration: BoxDecoration(
                   border: Border(
-                    bottom:
-                        BorderSide(color: Colors.white.withOpacity(0.12)),
+                    bottom: BorderSide(color: Colors.white.withOpacity(0.12)),
                   ),
                 ),
                 child: Row(
@@ -54,8 +50,7 @@ class SupplierDashboardPage extends StatelessWidget {
                       style: TextStyle(color: Colors.white70),
                     ),
                     const SizedBox(width: 16),
-                    const Icon(Icons.notifications_none,
-                        color: Colors.white54),
+                    const Icon(Icons.notifications_none, color: Colors.white54),
                     const SizedBox(width: 12),
                     const Icon(Icons.settings, color: Colors.white54),
                   ],
@@ -67,38 +62,68 @@ class SupplierDashboardPage extends StatelessWidget {
                 child: Row(
                   children: [
                     /// ================= SIDEBAR =================
+                    /// ================= SIDEBAR =================
                     SizedBox(
                       width: 280,
                       child: Padding(
                         padding: const EdgeInsets.all(12),
-                        child: DashboardGlassCard(
-                          child: SingleChildScrollView(
+                        child: SizedBox.expand(
+                          child: DashboardGlassCard(
                             child: Column(
                               children: [
-                                _sideItem(Icons.dashboard, 'Dashboard',
-                                    active: true),
-                                _sideItem(Icons.shopping_cart,
-                                    'Purchase Orders'),
-                                _sideItem(Icons.local_shipping,
-                                    'Deliveries'),
-                                _sideItem(Icons.verified,
-                                    'Quality Control'),
-                                _sideItem(Icons.receipt_long, 'Invoices'),
-                                _sideItem(Icons.payments, 'Payments'),
-                                _sideItem(Icons.assignment, 'RFQs'),
-                                _sideItem(Icons.analytics, 'Performance'),
-                                _sideItem(Icons.inventory,
-                                    'Inventory Availability'),
-                                _sideItem(Icons.help_outline, 'Help'),
-                                const SizedBox(height: 16),
+                                /// ================= MENU (SCROLLABLE) =================
+                                Expanded(
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      children: [
+                                        _sideItem(
+                                          Icons.dashboard,
+                                          'Dashboard',
+                                          active: true,
+                                        ),
+                                        _sideItem(
+                                          Icons.shopping_cart,
+                                          'Purchase Orders',
+                                        ),
+                                        _sideItem(
+                                          Icons.local_shipping,
+                                          'Deliveries',
+                                        ),
+                                        _sideItem(
+                                          Icons.verified,
+                                          'Quality Control',
+                                        ),
+                                        _sideItem(
+                                          Icons.receipt_long,
+                                          'Invoices',
+                                        ),
+                                        _sideItem(Icons.payments, 'Payments'),
+                                        _sideItem(Icons.assignment, 'RFQs'),
+                                        _sideItem(
+                                          Icons.analytics,
+                                          'Performance',
+                                        ),
+                                        _sideItem(
+                                          Icons.inventory,
+                                          'Inventory Availability',
+                                        ),
+                                        _sideItem(Icons.help_outline, 'Help'),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+
+                                /// ================= LOGOUT (FIXED AT BOTTOM) =================
                                 const Divider(color: Colors.white24),
+
                                 ListTile(
-                                  leading: const Icon(Icons.logout,
-                                      color: Colors.white70),
+                                  leading: const Icon(
+                                    Icons.logout,
+                                    color: Colors.white70,
+                                  ),
                                   title: const Text(
                                     'Logout',
-                                    style:
-                                        TextStyle(color: Colors.white70),
+                                    style: TextStyle(color: Colors.white70),
                                   ),
                                   onTap: () {
                                     Navigator.pushReplacement(
@@ -123,8 +148,7 @@ class SupplierDashboardPage extends StatelessWidget {
                         padding: const EdgeInsets.all(20),
                         child: SingleChildScrollView(
                           child: Column(
-                            crossAxisAlignment:
-                                CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Text(
                                 'Welcome, Bharat Electricals',
@@ -137,8 +161,7 @@ class SupplierDashboardPage extends StatelessWidget {
                               const SizedBox(height: 6),
                               const Text(
                                 "Here's your supplier overview",
-                                style:
-                                    TextStyle(color: Colors.white70),
+                                style: TextStyle(color: Colors.white70),
                               ),
 
                               const SizedBox(height: 24),
@@ -146,8 +169,7 @@ class SupplierDashboardPage extends StatelessWidget {
                               /// ================= SUPPLIER SCORECARD =================
                               DashboardGlassCard(
                                 child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Row(
                                       children: const [
@@ -156,8 +178,7 @@ class SupplierDashboardPage extends StatelessWidget {
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 16,
-                                            fontWeight:
-                                                FontWeight.w600,
+                                            fontWeight: FontWeight.w600,
                                           ),
                                         ),
                                         Spacer(),
@@ -242,24 +263,23 @@ class SupplierDashboardPage extends StatelessWidget {
 
                               /// ================= LOWER GRID =================
                               Row(
-                                crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Expanded(
                                     flex: 7,
                                     child: Column(
                                       children: [
                                         _sectionCard(
-                                            'Supplier Scorecard Table',
-                                            220),
+                                          'Supplier Scorecard Table',
+                                          220,
+                                        ),
                                         const SizedBox(height: 16),
                                         _sectionCard(
-                                            'Recent Purchase Orders',
-                                            200),
+                                          'Recent Purchase Orders',
+                                          200,
+                                        ),
                                         const SizedBox(height: 16),
-                                        _sectionCard(
-                                            'Pending Deliveries',
-                                            160),
+                                        _sectionCard('Pending Deliveries', 160),
                                       ],
                                     ),
                                   ),
@@ -271,12 +291,14 @@ class SupplierDashboardPage extends StatelessWidget {
                                         _paymentStatusCard(),
                                         const SizedBox(height: 16),
                                         _sectionCard(
-                                            'Inventory Availability',
-                                            180),
+                                          'Inventory Availability',
+                                          180,
+                                        ),
                                         const SizedBox(height: 16),
                                         _sectionCard(
-                                            'Alerts & Recommendations',
-                                            140),
+                                          'Alerts & Recommendations',
+                                          140,
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -299,8 +321,7 @@ class SupplierDashboardPage extends StatelessWidget {
 
   /// ================= HELPERS =================
 
-  static Widget _sideItem(IconData icon, String label,
-      {bool active = false}) {
+  static Widget _sideItem(IconData icon, String label, {bool active = false}) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 6),
       decoration: active
@@ -308,18 +329,15 @@ class SupplierDashboardPage extends StatelessWidget {
               borderRadius: BorderRadius.circular(14),
               color: const Color.fromARGB(255, 92, 101, 141).withOpacity(0.12),
               border: Border.all(
-                  color: const Color.fromARGB(255, 70, 82, 109).withOpacity(0.5)),
+                color: const Color.fromARGB(255, 70, 82, 109).withOpacity(0.5),
+              ),
             )
           : null,
       child: ListTile(
-        leading: Icon(icon,
-            color:
-                active ? Colors.cyanAccent : Colors.white70),
+        leading: Icon(icon, color: active ? Colors.cyanAccent : Colors.white70),
         title: Text(
           label,
-          style: TextStyle(
-              color:
-                  active ? Colors.cyanAccent : Colors.white70),
+          style: TextStyle(color: active ? Colors.cyanAccent : Colors.white70),
         ),
       ),
     );
@@ -328,21 +346,16 @@ class SupplierDashboardPage extends StatelessWidget {
   /// ✅ METRIC TILE (NO GlassCard → NO OVERFLOW)
   static Widget _metric(String title, String value, String sub) {
     return Container(
-      padding:
-          const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: Colors.cyanAccent.withOpacity(0.35),
-        ),
+        border: Border.all(color: Colors.cyanAccent.withOpacity(0.35)),
         color: Colors.black.withOpacity(0.25),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title,
-              style:
-                  const TextStyle(color: Colors.white70)),
+          Text(title, style: const TextStyle(color: Colors.white70)),
           const SizedBox(height: 10),
           Text(
             value,
@@ -353,9 +366,7 @@ class SupplierDashboardPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 4),
-          Text(sub,
-              style:
-                  const TextStyle(color: Colors.white38)),
+          Text(sub, style: const TextStyle(color: Colors.white38)),
         ],
       ),
     );
@@ -366,9 +377,7 @@ class SupplierDashboardPage extends StatelessWidget {
       child: SizedBox(
         height: height,
         child: Center(
-          child: Text(title,
-              style:
-                  const TextStyle(color: Colors.white70)),
+          child: Text(title, style: const TextStyle(color: Colors.white70)),
         ),
       ),
     );
@@ -379,40 +388,39 @@ class SupplierDashboardPage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Payment Status',
-              style: TextStyle(color: Colors.white70)),
+          const Text('Payment Status', style: TextStyle(color: Colors.white70)),
           const SizedBox(height: 20),
           Row(
             children: [
               const SizedBox(
                 width: 140,
                 height: 140,
-                child:
-                    PaymentDonutChart(paid: 170, pending: 80),
+                child: PaymentDonutChart(paid: 170, pending: 80),
               ),
               const SizedBox(width: 16),
               Expanded(
                 child: Column(
-                  crossAxisAlignment:
-                      CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
-                    Text('₹80 L',
-                        style: TextStyle(
-                            color: Colors.cyanAccent,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold)),
-                    Text('Pending',
-                        style:
-                            TextStyle(color: Colors.white54)),
+                    Text(
+                      '₹80 L',
+                      style: TextStyle(
+                        color: Colors.cyanAccent,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text('Pending', style: TextStyle(color: Colors.white54)),
                     SizedBox(height: 14),
-                    Text('₹1.7 Cr',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold)),
-                    Text('Paid',
-                        style:
-                            TextStyle(color: Colors.white54)),
+                    Text(
+                      '₹1.7 Cr',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text('Paid', style: TextStyle(color: Colors.white54)),
                   ],
                 ),
               ),
@@ -425,15 +433,15 @@ class SupplierDashboardPage extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                backgroundColor:
-                    const Color.fromARGB(255, 76, 81, 112),
+                backgroundColor: const Color.fromARGB(255, 76, 81, 112),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(22),
                 ),
               ),
-              child: const Text('Submit Invoice',
-                  style:
-                      TextStyle(fontWeight: FontWeight.w600)),
+              child: const Text(
+                'Submit Invoice',
+                style: TextStyle(fontWeight: FontWeight.w600),
+              ),
             ),
           ),
         ],

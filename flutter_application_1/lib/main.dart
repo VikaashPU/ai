@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.darkTheme,
 
       /// 🌐 Initial route
-      initialRoute: '/supplier-login',
+      initialRoute: '/office-login',
 
       /// 🧭 App routes (PATH-BASED)
       routes: {
