@@ -8,27 +8,65 @@ class LoginGlassCard extends StatelessWidget {
   const LoginGlassCard({super.key, required this.child});
  
   @override
-  Widget build(BuildContext context) {
-    return CustomPaint(
-      painter: _LoginShinyBorderPainter(),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(28),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 34),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(28),
-            color: Colors.black.withOpacity(0.38),
-            border: Border.all(
-              color: const Color.fromARGB(255, 8, 174, 216).withOpacity(0.95),
-              width: 2.2, // ✨ slightly thicker
+Widget build(BuildContext context) {
+  return Stack(
+    children: [
+      // 1️⃣ Border + glass card (UNCHANGED logic)
+      CustomPaint(
+        painter: _LoginShinyBorderPainter(),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(28),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 34),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(28),
+              color: Colors.black.withOpacity(0.38),
+              border: Border.all(
+                color: const Color.fromARGB(255, 8, 174, 216)
+                    .withOpacity(0.95),
+                width: 2.2,
+              ),
             ),
+            child: child,
           ),
-          child: child,
         ),
       ),
-    );
-  }
+
+      // 2️⃣ 🔥 EDGE LIGHT STREAKS (ADD ONLY THIS)
+      Positioned.fill(
+        child: IgnorePointer(
+          child: CustomPaint(
+            painter: EdgeSpecularStreakPainter(),
+          ),
+        ),
+      ),
+    ],
+  );
 }
+}
+
+class _LoginShinyBorderPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final rect = Offset.zero & size;
+
+    final rrect = RRect.fromRectAndRadius(
+      rect.deflate(0.6),
+      const Radius.circular(28),
+    );
+
+    final paint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2.2
+      ..color = const Color.fromARGB(255, 8, 174, 216).withOpacity(0.95);
+
+    canvas.drawRRect(rrect, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+}
+
 
 /// ===============================
 /// 📊 DASHBOARD GLASS (IMAGE MATCHED)
@@ -76,30 +114,94 @@ class DashboardGlassCard extends StatelessWidget {
 /// ===============================
 /// ✨ LOGIN SHINY BORDER PAINTER
 /// ===============================
-class _LoginShinyBorderPainter extends CustomPainter {
+class EdgeSpecularStreakPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final rect = Offset.zero & size;
 
-    final rrect = RRect.fromRectAndRadius(
-      rect.deflate(0.6),
-      const Radius.circular(28),
+    // ===== LEFT EDGE STREAK =====
+    _drawVerticalStreak(
+      canvas,
+      rect,
+      x: 0.8,
+      heightFactor: 0.65,
     );
 
+    // ===== RIGHT EDGE STREAK =====
+    _drawVerticalStreak(
+      canvas,
+      rect,
+      x: size.width - 2.2,
+      heightFactor: 0.55,
+    );
+
+    // ===== TOP EDGE STREAK =====
+    _drawHorizontalStreak(
+      canvas,
+      rect,
+      y: 0.8,
+      widthFactor: 0.45,
+    );
+  }
+
+  // -----------------------------
+
+  void _drawVerticalStreak(
+    Canvas canvas,
+    Rect rect, {
+    required double x,
+    required double heightFactor,
+  }) {
     final paint = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.4
       ..shader = LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
         colors: [
-          Colors.white.withOpacity(0.75),
-          Colors.cyanAccent.withOpacity(0.45),
+          Colors.transparent,
+          const Color(0xFF7FF6FF).withOpacity(0.6),
+          Colors.white.withOpacity(1.0), // hotspot
+          const Color(0xFF7FF6FF).withOpacity(0.6),
           Colors.transparent,
         ],
+        stops: const [0.0, 0.35, 0.5, 0.65, 1.0],
       ).createShader(rect);
 
-    canvas.drawRRect(rrect, paint);
+    final height = rect.height * heightFactor;
+    final top = (rect.height - height) / 2;
+
+    canvas.drawRect(
+      Rect.fromLTWH(x, top, 2.0, height),
+      paint,
+    );
+  }
+
+  void _drawHorizontalStreak(
+    Canvas canvas,
+    Rect rect, {
+    required double y,
+    required double widthFactor,
+  }) {
+    final paint = Paint()
+      ..shader = LinearGradient(
+        begin: Alignment.centerLeft,
+        end: Alignment.centerRight,
+        colors: [
+          Colors.transparent,
+          const Color(0xFF7FF6FF).withOpacity(0.6),
+          Colors.white.withOpacity(1.0), // hotspot
+          const Color(0xFF7FF6FF).withOpacity(0.6),
+          Colors.transparent,
+        ],
+        stops: const [0.0, 0.35, 0.5, 0.65, 1.0],
+      ).createShader(rect);
+
+    final width = rect.width * widthFactor;
+    final left = (rect.width - width) / 2;
+
+    canvas.drawRect(
+      Rect.fromLTWH(left, y, width, 2.0),
+      paint,
+    );
   }
 
   @override
